@@ -1,8 +1,198 @@
-<html>
-    <head>
-        <title>merhaba</title>
-    </head>
-    <body>
-        <p> <b> hello world!</b> </p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side fix content</title>
+</head>
+<body>
+  <style>
+    html {
+      height: 1.618;
+    }
+    body {
+        font-family: sans-serif;
+    }
+    .bg {
+      background: #9b3636;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100vh;
+      z-index: 1;
+    } 
+    .section {
+      display: flex; 
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+    }
+    .section > * {
+      width: 50%; 
+    }
+    .section-img {
+      position: relative;
+      display: flex;
+    }
+    .section-img-inner {
+      height: 100vh;
+      position: fixed;
+      left: 5%;
+      width: 40%;
+      top: 0;
+      mix-blend-mode: multiply;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      filter: blur(30px);
+      opacity: 0;
+      background-position: 50% 40%;
+      transition: .6s ease, opacity .6s ease, background-position .8s ease;
+    }
+    .section-body {
+      display: flex;
+      align-items: center;
+    }
+    .section-text {
+      padding: 5vw;
+    }
+    .section.active .section-img-inner {
+      opacity: 1;
+      background-position: 50% 50%;
+      filter: blur(0);
+    }
+    h2 {
+      font-size: 3vw;
+      margin-bottom: 0.5em;
+      margin-top: 0;
+    }
+
+  </style>
+  <div class="bg"></div>
+  <div class="section">
+    <div class="section-img">
+      <div class="section-img-inner" style="background-image: url(1.png);"></div>
+    </div>
+    <div class="section-body">
+      <div class="section-text">
+        <h2>ADIDAS PREDATOR 20+</h2>
+        <p> 
+          The mutation has begun people! And we cannot contain our excitement. 
+          The Adidas Mutator pack comprises of the Mutator versions of the Adidas X, Copa, Nemeziz and Predator football shoes; so
+          you can establish yourself as a game changer on the football pitch.  
+          Designed for the control towers, The adidas Predator Shoe is an absolute beast. 
+          Featuring the infamous adidas Demonskin, a set of contoured rubber spikes that enhance your ball control and accuracy.
+          The Control Frame outsole provides greater energy-return to keep you in control of the game. 
+          Be it a terrifying, defense-splitting pass or smash the ball into the net with fearsome accuracy – become an unfair
+          advantage to your team.  
+        </p>   
+      </div>
+    </div> 
+  </div>  
+
+  <div class="section">
+    <div class="section-img">
+      <div class="section-img-inner" style="background-image: url(2.png);"></div>
+    </div>
+    <div class="section-body">
+      <div class="section-text">
+        <h2>ADIDAS COPA 20+</h2>
+        <p>
+          The adidas Copa 20 Football Shoe is designed for players of elegance. If you enjoy the company of the ball and want to
+          feel each and every touch throughout your body – The Copa is the boot for you.
+          The adidas Fusionskin is a new take on leather technology. The upper is ribbed, seamless and perfectly aligns with the
+          shape of the foot for a more natural feel which results in a delightful, cushioned touch of the ball.
+          The adidas Nemeziz is a football shoe that instantly turns you into a nemesis of your opponent. Built for agility, this
+          boot allows you to make menacing drives into the opponents half.
+        </p>
+        <p>
+          The mutation has begun people! And we cannot contain our excitement.
+          The Adidas Mutator pack comprises of the Mutator versions of the Adidas X, Copa, Nemeziz and Predator football shoes;
+          so
+          you can establish yourself as a game changer on the football pitch.
+          Designed for the control towers, The adidas Predator Shoe is an absolute beast.
+          Featuring the infamous adidas Demonskin, a set of contoured rubber spikes that enhance your ball control and accuracy.
+          The Control Frame outsole provides greater energy-return to keep you in control of the game.
+          Be it a terrifying, defense-splitting pass or smash the ball into the net with fearsome accuracy – become an unfair
+          advantage to your team.
+        </p> 
+      </div>
+    </div>
+  </div>
+
+    <div class="section">
+      <div class="section-img">
+        <div class="section-img-inner" style="background-image: url(3.png);"></div>
+      </div>
+      <div class="section-body">
+        <div class="section-text">
+          <h2>ADIDAS X 19+</h2>
+          <p>
+            The tension tape upper is stretchy yet stiff and firmly wraps around the ankle, resulting in an almost barefoot feel.
+            The torsion system outsole allows you make those rapid changes of pace and leave your opponent in the dust.
+            The adidas X Football Shoe is a lightweight boot that perfectly balances speed and power.
+            The highlight is the X-slayskin, a skeletal structured upper with the Adidas speed mesh which allows you to make deft
+            touches on the ball and deliver speedy, powerful shots into the back of the net.
+            The outsole has omni-directional studs to allow quick movement in any direction, so you can attack any space of the
+            field with ease. With hints of nostalgia, the X gives of F50 vibes of the early 2010’s.
+            The adidas Mutator pack is an awe-inspiring take on football boots, one that remarkably blends performance and style.
+            Our advice – Get your feet in them before they are gone.
+          </p>
+          <p>
+            The mutation has begun people! And we cannot contain our excitement.
+            The Adidas Mutator pack comprises of the Mutator versions of the Adidas X, Copa, Nemeziz and Predator football shoes;
+            so
+            you can establish yourself as a game changer on the football pitch.
+            Designed for the control towers, The adidas Predator Shoe is an absolute beast.
+            Featuring the infamous adidas Demonskin, a set of contoured rubber spikes that enhance your ball control and accuracy.
+            The Control Frame outsole provides greater energy-return to keep you in control of the game.
+            Be it a terrifying, defense-splitting pass or smash the ball into the net with fearsome accuracy – become an unfair
+            advantage to your team.
+          </p> 
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-img">
+        <div class="section-img-inner" style="background-image: url(4.png);"></div>
+      </div>
+      <div class="section-body">
+        <div class="section-text">
+          <h2>Adidas Predator 20.3 LL</h2>
+          <p>
+            This is an improved version of Adidas Predator 20.3 IN, in which a slightly different design and set of technologies,
+            borrowed in part from the top version. Let's list the main chips of this model: 
+            Seamless Purecut Technology
+            top coat from Controlskin;
+            elastic Sockfit panel instead of lacing;
+            cushioning under the EVA heel.
+            This version is more suitable for outdoor games, but also suitable for playing in the hall for those who want a futsal
+            without laces. It feels like they are a cross between the Predator 20.3 and the Predator Mutator 20+, where there is
+            more advantage in favor of a cheap variation.
+          </p> 
+        </div>
+      </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(window).scroll(function(){
+      let $window = $(window),
+          $body = $('body'),   
+          $section = $('.section');
+      let scroll = $window.scrollTop() + ($window.height() / 3);
+      $section.each(function(){ 
+        if($(this).position().top <= scroll && $(this).position().top + $(this).height() > scroll){
+          $body.removeClass(function (index, css){
+            return (css.match (/(^|\s)color-\s+/g) || [].join(' '));
+          });
+          $('.section').removeClass('active');
+          $(this).addClass('active');
+        }
+      });
+    }).scroll();
+</script>
+</body>
 </html>
