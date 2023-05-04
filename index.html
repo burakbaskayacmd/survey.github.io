@@ -102,7 +102,6 @@
      </div> 
    </div>  
 
-<form action="https://formspree.io/f/mzbqojbd" method="POST" id="my-form">
   <div class="bg"></div>
   <div class="section1">
     <div class="section-img">
@@ -115,7 +114,6 @@
        <input type="number" name="age" id="age" placeholder="Yanıtınızı girin" required> </input>
        <br>
        <br>
-
         <label for="gender" id="gender">Cinsiyet</label> <br>
         <input type="text" name="gender" id="gender" placeholder="Yanıtınızı girin" required> </input>
         <br>
@@ -130,6 +128,7 @@
        <br>
        <label for="income" id="income">Aylık gelir</label> <br>
        <input type="number" name="income" id="income" placeholder="Yanıtınızı girin" required> </input>
+
       </div>
      </div>
     </div> 
@@ -142,15 +141,18 @@
     <div class="section-body">
       <div class="section-text">
         <h3>1. BÖLÜM <br> 1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
-        <input id="b" type="radio" name="b" value="b">
-        <label for="b"> Evet </label>
+        <form action="https://formspree.io/f/mzbqojbd" method="POST" id="my-form">
+        <input id="who-yes" type="radio" name="who-yes" value="yes">
+        <label for="no"> Evet </label>
         <br>
-        <input id="b" type="radio" name="b" value="b">
-        <label for="b"> Emin değilim </label>
+        <input id="who-notsure" type="radio" name="who-notsure" value="notsure">
+        <label for="no"> Emin değilim </label>
         <br>
-        <input id="b" type="radio"name="b" value="b">
-        <label for="b"> Hayır </label>
+        <input id="who-no" type="radio"name="who-no" value="no">
+        <label for="no"> Hayır </label>
         <br>
+        <button type="submit">Gönder</button>
+      </form>
       </div>
     </div>
   </div>
@@ -785,7 +787,7 @@
               <label for="g"> Hayır </label>
               <br>
 
-             <button type="submit">Gönder</button>
+
             </div>
           </div>
         </div>
