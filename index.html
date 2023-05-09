@@ -1,461 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anket</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket</title>
+
+    <link rel="stylesheet" href="assets/css/main.css?v=2">
+
+    <script src="assets/js/jquery-3.5.1.js"></script>
+    <script>
+        function getUrlVars()
+        {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        $(document).ready(function (){
+            var success = getUrlVars()["p"];
+
+            if(success === "success"){
+                $('#main').css({ display: "none" });
+                $('#success').css({ display: "flex" });
+            }
+        });
+
+    </script>
 </head>
 <body>
-  <style>
-    html {
-      height: 1.618;
-    }
-    body {
-        font-family: sans-serif;
-    }
-    .bg {
-      background: #9b3636;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100vh;
-      z-index: 1;
-    } 
-    .section{
-      display: flex; 
-      max-height: 350vh;
-      position: relative;
-      z-index: 2;
-    }
-    .section > * {
-      width: 50%; 
-    }
-    .section1 {
-      display: flex; 
-      min-height: 100vh;
-      position: relative;
-      z-index: 2;
-    }
-    .section1 > * {
-      width: 50%; 
-    }
-    .section-img {
-      position: relative;
-      display: flex;
-    }
-    .img-pic {
-      position: relative;
-      display: flex;
-      width: 20%;
-    }
-    .section-img-inner {
-      height: 100vh;
-      position: fixed;
-      left: 5%;
-      width: 40%;
-      top: 0;
-      mix-blend-mode: multiply;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      filter: blur(30px);
-      opacity: 0;
-      background-position: 50% 40%;
-      transition: .6s ease, opacity .6s ease, background-position .8s ease;
-    }
-    .section-body {
-      display: flex;
-      align-items: center;
-    }
-    .section-text {
-      padding: 5vw;
-    }
-    .section.active .section-img-inner {
-      opacity: 1;
-      background-position: 50% 50%;
-      filter: blur(0);
-    }
-    h2 {
-      font-size: 3vw;
-      margin-bottom: 0.5em;
-      margin-top: 0;
-    }
 
-  </style>
-   <div class="bg"></div>
-   <div class="section1">
-     <div class="section-img">
-       <div class="section-img-inner" style="background-image: url();"></div>
-     </div>
-     <div class="section-body">
-       <div class="section-text">
-         <h2>Görsel Okuryazarlık Bağlamında İnfografiklerin İncelenmesi</h2>
-         <img class="img-pic" src="rotate.png" alt="rotate phone"> <h5><i> Eğer bu ankete telefondan giriyorsanız lütfen telefonu yan çeviriniz. </i></h5>
-            <p> 
-            Yüksek lisans kapsamında yapılan bu anket çalışması yaş, cinsiyet, eğitim, meslek ve gelir durumu soruları ile başlamaktadır. Bu soruların ardından 3 bölüm gelmektedir. Her bir bölüm içerisinde bir infografik bulunmakta ve bu infografiklerin altlarında cevaplanması beklenen 10 soru yer almaktadır. Katılımcılardan infografikleri inceleyerek uygun gördükleri kutucukları işaretlemeleri beklenmektedir. 
-            </p>   
-            <p>
-            Örnek olarak eğer incelenen infografiği kimin veya hangi kurumun yaptığı belliyse evet kutucuğu işaretlenmelidir. Eğer belli değilse hayır işaretlenmelidir. Çoklu seçime izin veren sorularda birden fazla seçim yapılabilmektedir. Bu tarz sorularda katılımcıdan gördüğünü işaretlenmesi beklenmektedir. Örnek olarakk infografikte fotoğraf ve piktogram görüyorsa fotoğraf ve piktogram seçenekleri işaretlenmelidir.
-            </p>
-       </div>
-     </div> 
-   </div>  
-
-  <div class="bg"></div>
-  <div class="section">
-    <div class="section-img">
-      <div class="section-img-inner" style="background-image: url(1.jpg);"></div>
-    </div>
-    <div class="section-body">
-      <div class="section-text">
-        <h3>TEMEL BİLGİLER</h3>
-        <form action="submit.php" method="POST">
-       <label for="age" id="age">Yaş</label> <br>
-       <input type="number" name="age" id="age" placeholder="Yanıtınızı girin" required> </input>
-       <br>
-       <br>
-        <label for="gender" id="gender">Cinsiyet</label> <br>
-        <input type="text" name="gender" id="gender" placeholder="Yanıtınızı girin" required> </input>
-        <br>
-        <br>
-        <label for="education" id="education">Eğitim durumu</label> <br>
-       <input type="text" name="education" id="education" placeholder="Yanıtınızı girin" required> </input>
-       <br>
-       <br>
-       <label for="job" id="job">Meslek</label> <br>
-       <input type="text" name="job"  id="job" placeholder="Yanıtınızı girin" required> </input>
-       <br>
-       <br>
-       <label for="income" id="income">Aylık gelir</label> <br>
-       <input type="number" name="income" id="income" placeholder="Yanıtınızı girin" required> </input>
-        <br>
-        
-        <h3>1. BÖLÜM <br> 1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
-        
-        <input id="who-yes" type="radio" name="who" value="yes">
-        <label for="sor-1"> Evet </label>
-        <br>
-        <input id="who-notsure" type="radio" name="who" value="notsure">
-        <label for="sor-1"> Emin değilim </label>
-        <br>
-        <input id="who-no" type="radio"name="who" value="no">
-        <label for="sor-1"> Hayır </label>
-
-
-        <br>
-
-        <h3> 2/10 İnfografikteki verilerin hangi kaynaktan alındığı belli midir?</h3>
-        <input id="yes" type="radio" name="2" value="c">
-        <label for="sor-2"> Evet </label>
-        <br>
-        <input id="notcertain" type="radio" name="2" value="c">
-        <label for="sor-2"> Emin değilim </label>
-        <br>
-        <input id="no" type="radio" name="2" value="c">
-        <label for="sor-2"> Hayır </label>
-
-        <br>
-
-        <h3> 3/10 Gördüğünüz infografik türü aşağıdakilerden hangisidir?</h3>
-        <input id="geo-1" type="radio" name="geo" value="1">
-        <label for="sor-3"> Coğrafi infografik </label>
-        <br>
-        <input id="his-1" type="radio" name="geo" value="1">
-        <label for="sor-3"> Tarihi infografik</label>
-        <br>
-        <input id="opi-1" type="radio" name="geo" value="1">
-        <label for="sor-3"> Görüş infografiği </label>
-        <br>
-        <input id="data-1" type="radio" name="geo" value="1">
-        <label for="sor-3"> Veri infografiği </label>
-        <br>
-        <input id="bio-1" type="radio" name="geo" value="1">
-        <label for="sor-3"> Biyografi infografiği </label>
-
-        <br>
-
-        <h3> 4/10 İnfografikte hangi tasarım unsurları kullanılmıştır? (Çoklu seçim)</h3>
-        <input type="checkbox" name="elements" id="checkbox" value="color">
-        <label for="checkbox1"> Renk </label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="pictogram">
-        <label for="checkbox2"> Piktogram/Sembol/İşaret</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="stroke">
-        <label for="checkbox3">Çizgi</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="photo">
-        <label for="checkbox4">Fotoğraf</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="dataviz">
-        <label for="checkbox5">Veri görselleştirme teknikleri (Sütun grafik, balon grafik vb.)</label>
-
-        <h3> 5/10 İnfografikte kullanılan tasarım unsurları yeterli midir?</h3>
-        <input id="d" type="radio" name="d" value="d">
-        <label for="d"> Evet </label>
-        <br>
-        <input id="d" type="radio" name="d" value="d">
-        <label for="d"> Emin değilim </label>
-        <br>
-        <input id="d" type="radio" name="d" value="d">
-        <label for="d"> Hayır </label>
-
-          <br>
-
-        <h3> 6/10 İnfografikte hangi veri görselleştirme teknikleri kullanılmıştır? (Çoklu seçim)</h3>
-        <input type="checkbox" name="elements" id="checkbox" value="bar">
-        <label for="checkbox6"> Sütun grafik </label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="baloon">
-        <label for="checkbox7"> Balon grafik</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="map">
-        <label for="checkbox8">Kabarcık haritası</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="donut">
-        <label for="checkbox9">Donut grafiği</label>
-        <br>
-        <input type="checkbox" name="elements" id="checkbox" value="bag">
-        <label for="checkbox10">Bağlantı haritası</label>
-
-   <br>
-
-          <h3> 7/10 Sizce infografikte kullanılan veri görselleştirme teknikleri yeterli midir?</h3>
-          <input id="e" type="radio" name="e" value="e">
-          <label for="e"> Evet </label>
-          <br>
-          <input id="e" type="radio" name="e" value="e">
-          <label for="e"> Emin değilim </label>
-          <br>
-          <input id="e" type="radio" name="e" value="e">
-          <label for="e"> Hayır </label>
-
-          <br>
-
-          <h3> 8/10 İnfografikte kullanılan metinler okunabilir midir?</h3>
-          <input id="f" type="radio" name="f" value="f">
-          <label for="f"> Evet </label>
-          <br>
-          <input id="f" type="radio" name="f" value="f">
-          <label for="f"> Emin değilim </label>
-          <br>
-          <input id="f" type="radio" name="f" value="f">
-          <label for="f"> Hayır </label>
-
-          <br>
-
-          <h3> 9/10 İnfografik içerisinde kullanılan bütün unsurlar size estetik bir uyum içinde gözüküyor mu?</h3>
-          <input id="g" type="radio" name="g" value="g">
-          <label for="g"> Evet </label>
-          <br>
-          <input id="g" type="radio" name="g" value="g">
-          <label for="g"> Emin değilim </label>
-          <br>
-          <input id="g" type="radio" name="g" value="g">
-          <label for="g"> Hayır </label>
-          
-          <br>
-          
-          <h3> 10/10 Verilmek istenen mesaj/bilgi açık bir şekilde verilmekte midir?</h3>
-          <input id="mesaj" type="radio" name="h" value="h">
-          <label for="sor-10"> Evet </label>
-          <br>
-          <input id="mesaj" type="radio" name="h" value="h">
-          <label for="sor-10"> Emin değilim </label>
-          <br>
-          <input id="mesaj" type="radio" name="h" value="h">
-          <label for="sor-10"> Hayır </label>
-          <br>
-          <button type="submit" value="Gönder">Gönder</button>
-
-          <br>
-
-        </form>
+<div id="main">
+    <div class="bg"></div>
+    <div class="section1">
+        <div class="section-img">
+            <div class="section-img-inner"></div>
         </div>
-      </div>
+        <div class="section-body">
+            <div class="section-text">
+                <h2>Görsel Okuryazarlık Bağlamında İnfografiklerin İncelenmesi</h2>
+                <img class="img-pic" src="assets/images/rotate.png" alt="rotate phone"> <h5><i> Eğer bu ankete telefondan giriyorsanız lütfen telefonu yan çeviriniz. </i></h5>
+                <p>
+                    Yüksek lisans kapsamında yapılan bu anket çalışması yaş, cinsiyet, eğitim, meslek ve gelir durumu soruları ile başlamaktadır. Bu soruların ardından 3 bölüm gelmektedir. Her bir bölüm içerisinde bir infografik bulunmakta ve bu infografiklerin altlarında cevaplanması beklenen 10 soru yer almaktadır. Katılımcılardan infografikleri inceleyerek uygun gördükleri kutucukları işaretlemeleri beklenmektedir.
+                </p>
+                <p>
+                    Örnek olarak eğer incelenen infografiği kimin veya hangi kurumun yaptığı belliyse evet kutucuğu işaretlenmelidir. Eğer belli değilse hayır işaretlenmelidir. Çoklu seçime izin veren sorularda birden fazla seçim yapılabilmektedir. Bu tarz sorularda katılımcıdan gördüğünü işaretlenmesi beklenmektedir. Örnek olarakk infografikte fotoğraf ve piktogram görüyorsa fotoğraf ve piktogram seçenekleri işaretlenmelidir.
+                </p>
+            </div>
+        </div>
     </div>
+
+    <form action="submit.php" method="POST">
+        <div class="bg"></div>
+        <div class="section">
+            <div class="section-img">
+                <div class="section-img-inner" style="background-image: url('assets/images/1.jpg');"></div>
+            </div>
+            <div class="section-body">
+                <div class="section-text">
+
+                    <div class="basic-knowledge-wrapper">
+                        <h3>TEMEL BİLGİLER</h3>
+                        <label for="age" class="basic-knowledge-label">Yaş</label>
+                        <input type="number" name="age" id="age" class="basic-knowledge" placeholder="Yanıtınızı girin" required/>
+                        <br>
+                        <br>
+                        <label for="gender" class="basic-knowledge-label">Cinsiyet</label>
+                        <input type="text" name="gender" id="gender" class="basic-knowledge" placeholder="Yanıtınızı girin" required/>
+                        <br>
+                        <br>
+                        <label for="education" class="basic-knowledge-label">Eğitim durumu</label>
+                        <input type="text" name="education" id="education" class="basic-knowledge" placeholder="Yanıtınızı girin" required/>
+                        <br>
+                        <br>
+                        <label for="job" class="basic-knowledge-label">Meslek</label>
+                        <input type="text" name="job" id="job" class="basic-knowledge" placeholder="Yanıtınızı girin" required/>
+                        <br>
+                        <br>
+                        <label for="income" class="basic-knowledge-label">Aylık gelir</label>
+                        <input type="number" name="income" id="income" class="basic-knowledge" placeholder="Yanıtınızı girin" required/>
+                    </div>
+
+
+                    <h3>1. BÖLÜM</h3>
+
+                    <!-- Question 1 - 1 -->
+                    <div class="question-wrapper">
+                        <h3> 1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
+                        <input id="q-1-1-1" type="radio" name="q-1-1" value="Yes">
+                        <label for="q-1-1-1"> Evet </label>
+                        <br>
+                        <input id="q-1-1-2" type="radio" name="q-1-1" value="Not Sure">
+                        <label for="q-1-1-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-1-3" type="radio" name="q-1-1" value="No">
+                        <label for="q-1-1-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 2 -->
+                    <div class="question-wrapper">
+                        <h3> 2/10 İnfografikteki verilerin hangi kaynaktan alındığı belli midir?</h3>
+                        <input id="q-1-2-1" type="radio" name="q-1-2" value="Yes">
+                        <label for="q-1-2-1"> Evet </label>
+                        <br>
+                        <input id="q-1-2-2" type="radio" name="q-1-2" value="Not Sure">
+                        <label for="q-1-2-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-2-3" type="radio" name="q-1-2" value="No">
+                        <label for="q-1-2-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 3 -->
+                    <div class="question-wrapper">
+                        <h3> 3/10 Gördüğünüz infografik türü aşağıdakilerden hangisidir?</h3>
+                        <input id="q-1-3-1" type="radio" name="q-1-3" value="Geographic Infographic">
+                        <label for="q-1-3-1"> Coğrafi infografik </label>
+                        <br>
+                        <input id="q-1-3-2" type="radio" name="q-1-3" value="Historical Infographic">
+                        <label for="q-1-3-2"> Tarihi infografik</label>
+                        <br>
+                        <input id="q-1-3-3" type="radio" name="q-1-3" value="Opinion Infographic">
+                        <label for="q-1-3-3"> Görüş infografiği </label>
+                        <br>
+                        <input id="q-1-3-4" type="radio" name="q-1-3" value="Data Infographic">
+                        <label for="q-1-3-4"> Veri infografiği </label>
+                        <br>
+                        <input id="q-1-3-5" type="radio" name="q-1-3" value="Biography Infographic">
+                        <label for="q-1-3-5"> Biyografi infografiği </label>
+                    </div>
+
+                    <!-- Question 1 - 4 -->
+                    <div class="question-wrapper">
+                        <h3> 4/10 İnfografikte hangi tasarım unsurları kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-1-4-1" type="checkbox" name="q-1-4[]" value="Color">
+                        <label for="q-1-4-1"> Renk </label>
+                        <br>
+                        <input id="q-1-4-2" type="checkbox" name="q-1-4[]" value="Pictogram">
+                        <label for="q-1-4-2"> Piktogram/Sembol/İşaret</label>
+                        <br>
+                        <input id="q-1-4-3" type="checkbox" name="q-1-4[]" value="Stroke">
+                        <label for="q-1-4-3">Çizgi</label>
+                        <br>
+                        <input id="q-1-4-4" type="checkbox" name="q-1-4[]"  value="Photo">
+                        <label for="q-1-4-4">Fotoğraf</label>
+                        <br>
+                        <input id="q-1-4-5" type="checkbox" name="q-1-4[]" value="Dataviz">
+                        <label for="q-1-4-5">Veri görselleştirme teknikleri (Sütun grafik, balon grafik vb.)</label>
+                    </div>
+
+                    <!-- Question 1 - 5 -->
+                    <div class="question-wrapper">
+                        <h3> 5/10 İnfografikte kullanılan tasarım unsurları yeterli midir?</h3>
+                        <input id="q-1-5-1" type="radio" name="q-1-5" value="Yes">
+                        <label for="q-1-5-1"> Evet </label>
+                        <br>
+                        <input id="q-1-5-2" type="radio" name="q-1-5" value="Not Sure">
+                        <label for="q-1-5-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-5-3" type="radio" name="q-1-5" value="No">
+                        <label for="q-1-5-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 6 -->
+                    <div class="question-wrapper">
+                        <h3> 6/10 İnfografikte hangi veri görselleştirme teknikleri kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-1-6-1" type="checkbox" name="q-1-6[]" value="Bar">
+                        <label for="q-1-6-1"> Sütun grafik </label>
+                        <br>
+                        <input id="q-1-6-2" type="checkbox" name="q-1-6[]" value="Baloon">
+                        <label for="q-1-6-2"> Balon grafik</label>
+                        <br>
+                        <input id="q-1-6-3" type="checkbox" name="q-1-6[]" value="Map">
+                        <label for="q-1-6-3">Kabarcık haritası</label>
+                        <br>
+                        <input id="q-1-6-4" type="checkbox" name="q-1-6[]" value="Donut">
+                        <label for="q-1-6-4">Donut grafiği</label>
+                        <br>
+                        <input id="q-1-6-5" type="checkbox" name="q-1-6[]" value="Bag">
+                        <label for="q-1-6-5">Bağlantı haritası</label>
+                    </div>
+
+                    <!-- Question 1 - 7 -->
+                    <div class="question-wrapper">
+                        <h3> 7/10 Sizce infografikte kullanılan veri görselleştirme teknikleri yeterli midir?</h3>
+                        <input id="q-1-7-1" type="radio" name="q-1-7" value="Yes">
+                        <label for="q-1-7-1"> Evet </label>
+                        <br>
+                        <input id="q-1-7-2" type="radio" name="q-1-7" value="Not Sure">
+                        <label for="q-1-7-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-7-3" type="radio" name="q-1-7" value="No">
+                        <label for="q-1-7-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 8 -->
+                    <div class="question-wrapper">
+                        <h3> 8/10 İnfografikte kullanılan metinler okunabilir midir?</h3>
+                        <input id="q-1-8-1" type="radio" name="q-1-8" value="Yes">
+                        <label for="q-1-8-1"> Evet </label>
+                        <br>
+                        <input id="q-1-8-2" type="radio" name="q-1-8" value="Not Sure">
+                        <label for="q-1-8-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-8-3" type="radio" name="q-1-8" value="No">
+                        <label for="q-1-8-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 9 -->
+                    <div class="question-wrapper">
+                        <h3> 9/10 İnfografik içerisinde kullanılan bütün unsurlar size estetik bir uyum içinde gözüküyor mu?</h3>
+                        <input id="q-1-9-1" type="radio" name="q-1-9" value="Yes">
+                        <label for="q-1-9-1"> Evet </label>
+                        <br>
+                        <input id="q-1-9-2" type="radio" name="q-1-9" value="Not Sure">
+                        <label for="q-1-9-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-9-3" type="radio" name="q-1-9" value="No">
+                        <label for="q-1-9-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 1 - 10 -->
+                    <div class="question-wrapper">
+                        <h3> 10/10 Verilmek istenen mesaj/bilgi açık bir şekilde verilmekte midir?</h3>
+                        <input id=q-1-10-1 type="radio" name="q-1-10" value="Yes">
+                        <label for="q-1-10-1"> Evet </label>
+                        <br>
+                        <input id=q-1-10-2 type="radio" name="q-1-10" value="Not Sure">
+                        <label for="q-1-10-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-1-10-3" type="radio" name="q-1-10" value="No">
+                        <label for="q-1-10-3"> Hayır </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="bg"></div>
+        <div class="section">
+            <div class="section-img">
+                <div class="section-img-inner" style="background-image: url('assets/images/2.jpg');"></div>
+            </div>
+            <div class="section-body">
+                <div class="section-text">
+                    <h3>2. BÖLÜM</h3>
+
+                    <!-- Question 2 - 1 -->
+                    <div class="question-wrapper">
+                        <h3>1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
+                        <input id="q-2-1-1" type="radio" name="q-2-1" value="Yes">
+                        <label for="q-2-1-1"> Evet </label>
+                        <br>
+                        <input id="q-2-1-2" type="radio" name="q-2-1" value="Not Sure">
+                        <label for="q-2-1-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-1-3" type="radio" name="q-2-1" value="No">
+                        <label for="q-2-1-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 2 -->
+                    <div class="question-wrapper">
+                        <h3> 2/10 İnfografikteki verilerin hangi kaynaktan alındığı belli midir?</h3>
+                        <input id="q-2-2-1" type="radio" name="q-2-2" value="Yes">
+                        <label for="q-2-2-1"> Evet </label>
+                        <br>
+                        <input id="q-2-2-2" type="radio" name="q-2-2" value="Not Sure">
+                        <label for="q-2-2-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-2-3" type="radio" name="q-2-2" value="No">
+                        <label for="q-2-2-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 3 -->
+                    <div class="question-wrapper">
+                        <h3> 3/10 Gördüğünüz infografik türü aşağıdakilerden hangisidir?</h3>
+                        <input id="q-2-3-1" type="radio" name="q-2-3" value="Geographic infographic">
+                        <label for="q-2-3-1"> Coğrafi infografik </label>
+                        <br>
+                        <input id="q-2-3-2" type="radio" name="q-2-3" value="Historical Infographic">
+                        <label for="q-2-3-2"> Tarihi infografik</label>
+                        <br>
+                        <input id="q-2-3-3" type="radio" name="q-2-3" value="Opinion Infographic">
+                        <label for="q-2-3-3"> Görüş infografiği </label>
+                        <br>
+                        <input id="q-2-3-4" type="radio" name="q-2-3" value="Data Infographic">
+                        <label for="q-2-3-4"> Veri infografiği </label>
+                        <br>
+                        <input id="q-2-3-5" type="radio" name="q-2-3" value="Biography Infographic">
+                        <label for="q-2-3-5"> Biyografi infografiği </label>
+                    </div>
+
+                    <!-- Question 2 - 4 -->
+                    <div class="question-wrapper">
+                        <h3> 4/10 İnfografikte hangi tasarım unsurları kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-2-4-1" type="checkbox" name="q-2-4[]" value="Color">
+                        <label for="q-2-4-1"> Renk </label>
+                        <br>
+                        <input id="q-2-4-2" type="checkbox" name="q-2-4[]" value="Pictogram">
+                        <label for="q-2-4-2"> Piktogram/Sembol/İşaret</label>
+                        <br>
+                        <input id="q-2-4-3" type="checkbox" name="q-2-4[]" value="Stroke">
+                        <label for="q-2-4-3">Çizgi</label>
+                        <br>
+                        <input id="q-2-4-4" type="checkbox" name="q-2-4[]" value="Photo">
+                        <label for="q-2-4-4">Fotoğraf</label>
+                        <br>
+                        <input id="q-2-4-5" type="checkbox" name="q-2-4[]" value="Dataviz">
+                        <label for="q-2-4-5">Veri görselleştirme teknikleri (Sütun grafik, balon grafik vb.)</label>
+                    </div>
+
+                    <!-- Question 2 - 5 -->
+                    <div class="question-wrapper">
+                        <h3> 5/10 İnfografikte kullanılan tasarım unsurları yeterli midir?</h3>
+                        <input id="q-2-5-1" type="radio" name="q-2-5" value="Yes">
+                        <label for="q-2-5-1"> Evet </label>
+                        <br>
+                        <input id="q-2-5-2" type="radio" name="q-2-5" value="Not Sure">
+                        <label for="q-2-5-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-5-3" type="radio" name="q-2-5" value="No">
+                        <label for="q-2-5-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 6 -->
+                    <div class="question-wrapper">
+                        <h3> 6/10 İnfografikte hangi veri görselleştirme teknikleri kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-2-6-1" type="checkbox" name="q-2-6[]" value="Bar">
+                        <label for="q-2-6-1"> Sütun grafik </label>
+                        <br>
+                        <input id="q-2-6-2" type="checkbox" name="q-2-6[]" value="Baloon">
+                        <label for="q-2-6-2"> Balon grafik</label>
+                        <br>
+                        <input id="q-2-6-3" type="checkbox" name="q-2-6[]" value="Map">
+                        <label for="q-2-6-3">Kabarcık haritası</label>
+                        <br>
+                        <input id="q-2-6-4" type="checkbox" name="q-2-6[]" value="Donut">
+                        <label for="q-2-6-4">Donut grafiği</label>
+                        <br>
+                        <input id="q-2-6-5" type="checkbox" name="q-2-6[]" value="Bag">
+                        <label for="q-2-6-5">Bağlantı haritası</label>
+                    </div>
+
+                    <!-- Question 2 - 7 -->
+                    <div class="question-wrapper">
+                        <h3> 7/10 Sizce infografikte kullanılan veri görselleştirme teknikleri yeterli midir?</h3>
+                        <input id="q-2-7-1" type="radio" name="q-2-7" value="Yes">
+                        <label for="q-2-7-1"> Evet </label>
+                        <br>
+                        <input id="q-2-7-2" type="radio" name="q-2-7" value="Not Sure">
+                        <label for="q-2-7-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-7-3" type="radio" name="q-2-7" value="No">
+                        <label for="q-2-7-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 8 -->
+                    <div class="question-wrapper">
+                        <h3> 8/10 İnfografikte kullanılan metinler okunabilir midir?</h3>
+                        <input id="q-2-8-1" type="radio" name="q-2-8" value="Yes">
+                        <label for="q-2-8-1"> Evet </label>
+                        <br>
+                        <input id="q-2-8-2" type="radio" name="q-2-8" value="Not Sure">
+                        <label for="q-2-8-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-8-3" type="radio" name="q-2-8" value="No">
+                        <label for="q-2-8-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 9 -->
+                    <div class="question-wrapper">
+                        <h3> 9/10 İnfografik içerisinde kullanılan bütün unsurlar size estetik bir uyum içinde gözüküyor mu?</h3>
+                        <input id="q-2-9-1" type="radio" name="q-2-9" value="Yes">
+                        <label for="q-2-9-1"> Evet </label>
+                        <br>
+                        <input id="q-2-9-2" type="radio" name="q-2-9" value="Not Sure">
+                        <label for="q-2-9-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-9-3" type="radio" name="q-2-9" value="No">
+                        <label for="q-2-9-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 2 - 10 -->
+                    <div class="question-wrapper">
+                        <h3> 10/10 Verilmek istenen mesaj/bilgi açık bir şekilde verilmekte midir?</h3>
+                        <input id="q-2-10-1" type="radio" name="q-2-10" value="Yes">
+                        <label for="q-2-10-1"> Evet </label>
+                        <br>
+                        <input id="q-2-10-2" type="radio" name="q-2-10" value="Not Sure">
+                        <label for="q-2-10-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-2-10-3" type="radio" name="q-2-10" value="No">
+                        <label for="q-2-10-3"> Hayır </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="bg"></div>
+        <div class="section">
+            <div class="section-img">
+                <div class="section-img-inner" style="background-image: url('assets/images/3.jpg');"></div>
+            </div>
+            <div class="section-body">
+                <div class="section-text">
+                    <h3>3. BÖLÜM</h3>
+
+                    <!-- Question 3 - 1 -->
+                    <div class="question-wrapper">
+                        <h3>1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
+                        <input id="q-3-1-1" type="radio" name="q-3-1" value="Yes">
+                        <label for="q-3-1-1"> Evet </label>
+                        <br>
+                        <input id="q-3-1-2" type="radio" name="q-3-1" value="Not Sure">
+                        <label for="q-3-1-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-1-3" type="radio" name="q-3-1" value="No">
+                        <label for="q-3-1-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 2 -->
+                    <div class="question-wrapper3">
+                        <h3> 2/10 İnfografikteki verilerin hangi kaynaktan alındığı belli midir?</h3>
+                        <input id="q-3-2-1" type="radio" name="q-3-2" value="Yes">
+                        <label for="q-3-2-1"> Evet </label>
+                        <br>
+                        <input id="q-3-2-2" type="radio" name="q-3-2" value="Not Sure">
+                        <label for="q-3-2-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-2-3" type="radio" name="q-3-2" value="No">
+                        <label for="q-3-2-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 3 -->
+                    <div class="question-wrapper">
+                        <h3> 3/10 Gördüğünüz infografik türü aşağıdakilerden hangisidir?</h3>
+                        <input id="q-3-3-1" type="radio" name="q-3-3" value="Geographic infographic">
+                        <label for="q-3-3-1"> Coğrafi infografik </label>
+                        <br>
+                        <input id="q-3-3-2" type="radio" name="q-3-3" value="Historical Infographic">
+                        <label for="q-3-3-2"> Tarihi infografik</label>
+                        <br>
+                        <input id="q-3-3-3" type="radio" name="q-3-3" value="Opinion Infographic">
+                        <label for="q-3-3-3"> Görüş infografiği </label>
+                        <br>
+                        <input id="q-3-3-4" type="radio" name="q-3-3" value="Data Infographic">
+                        <label for="q-3-3-4"> Veri infografiği </label>
+                        <br>
+                        <input id="q-3-3-5" type="radio" name="q-3-3" value="Biography Infographic">
+                        <label for="q-3-3-5"> Biyografi infografiği </label>
+                    </div>
+
+                    <!-- Question 3 - 4 -->
+                    <div class="question-wrapper">
+                        <h3> 4/10 İnfografikte hangi tasarım unsurları kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-3-4-1" type="checkbox" name="q-3-4[]" value="Color">
+                        <label for="q-3-4-1"> Renk </label>
+                        <br>
+                        <input id="q-3-4-2" type="checkbox" name="q-3-4[]" value="Pictogram">
+                        <label for="q-3-4-2"> Piktogram/Sembol/İşaret</label>
+                        <br>
+                        <input id="q-3-4-3" type="checkbox" name="q-3-4[]" value="Stroke">
+                        <label for="q-3-4-3">Çizgi</label>
+                        <br>
+                        <input id="q-3-4-4" type="checkbox" name="q-3-4[]" value="Photo">
+                        <label for="q-3-4-4">Fotoğraf</label>
+                        <br>
+                        <input id="q-3-4-5" type="checkbox" name="q-3-4[]" value="Dataviz">
+                        <label for="q-3-4-5">Veri görselleştirme teknikleri (Sütun grafik, balon grafik vb.)</label>
+                    </div>
+
+                    <!-- Question 3 - 5 -->
+                    <div class="question-wrapper">
+                        <h3> 5/10 İnfografikte kullanılan tasarım unsurları yeterli midir?</h3>
+                        <input id="q-3-5-1" type="radio" name="q-3-5" value="Yes">
+                        <label for="q-3-5-1"> Evet </label>
+                        <br>
+                        <input id="q-3-5-2" type="radio" name="q-3-5" value="Not Sure">
+                        <label for="q-3-5-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-5-3" type="radio" name="q-3-5" value="No">
+                        <label for="q-3-5-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 6 -->
+                    <div class="question-wrapper">
+                        <h3> 6/10 İnfografikte hangi veri görselleştirme teknikleri kullanılmıştır? (Çoklu seçim)</h3>
+                        <input id="q-3-6-1" type="checkbox" name="q-3-6[]" value="Bar">
+                        <label for="q-3-6-1"> Sütun grafik </label>
+                        <br>
+                        <input id="q-3-6-2" type="checkbox" name="q-3-6[]" value="Baloon">
+                        <label for="q-3-6-2"> Balon grafik</label>
+                        <br>
+                        <input id="q-3-6-3" type="checkbox" name="q-3-6[]" value="Map">
+                        <label for="q-3-6-3">Kabarcık haritası</label>
+                        <br>
+                        <input id="q-3-6-4" type="checkbox" name="q-3-6[]" value="Donut">
+                        <label for="q-3-6-4">Donut grafiği</label>
+                        <br>
+                        <input id="q-3-6-5" type="checkbox" name="q-3-6[]" value="Bag">
+                        <label for="q-3-6-5">Bağlantı haritası</label>
+                    </div>
+
+                    <!-- Question 3 - 7 -->
+                    <div class="question-wrapper">
+                        <h3> 7/10 Sizce infografikte kullanılan veri görselleştirme teknikleri yeterli midir?</h3>
+                        <input id="q-3-7-1" type="radio" name="q-3-7" value="Yes">
+                        <label for="q-3-7-1"> Evet </label>
+                        <br>
+                        <input id="q-3-7-2" type="radio" name="q-3-7" value="Not Sure">
+                        <label for="q-3-7-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-7-3" type="radio" name="q-3-7" value="No">
+                        <label for="q-3-7-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 8 -->
+                    <div class="question-wrapper">
+                        <h3> 8/10 İnfografikte kullanılan metinler okunabilir midir?</h3>
+                        <input id="q-3-8-1" type="radio" name="q-3-8" value="Yes">
+                        <label for="q-3-8-1"> Evet </label>
+                        <br>
+                        <input id="q-3-8-2" type="radio" name="q-3-8" value="Not Sure">
+                        <label for="q-3-8-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-8-3" type="radio" name="q-3-8" value="No">
+                        <label for="q-3-8-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 9 -->
+                    <div class="question-wrapper">
+                        <h3> 9/10 İnfografik içerisinde kullanılan bütün unsurlar size estetik bir uyum içinde gözüküyor mu?</h3>
+                        <input id="q-3-9-1" type="radio" name="q-3-9" value="Yes">
+                        <label for="q-3-9-1"> Evet </label>
+                        <br>
+                        <input id="q-3-9-2" type="radio" name="q-3-9" value="Not Sure">
+                        <label for="q-3-9-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-9-3" type="radio" name="q-3-9" value="No">
+                        <label for="q-3-9-3"> Hayır </label>
+                    </div>
+
+                    <!-- Question 3 - 10 -->
+                    <div class="question-wrapper">
+                        <h3> 10/10 Verilmek istenen mesaj/bilgi açık bir şekilde verilmekte midir?</h3>
+                        <input id="q-3-10-1" type="radio" name="q-3-10" value="Yes">
+                        <label for="q-3-10-1"> Evet </label>
+                        <br>
+                        <input id="q-3-10-2" type="radio" name="q-3-10" value="Not Sure">
+                        <label for="q-3-10-2"> Emin değilim </label>
+                        <br>
+                        <input id="q-3-10-3" type="radio" name="q-3-10" value="No">
+                        <label for="q-3-10-3"> Hayır </label>
+                    </div>
+
+                    <div class="send-btn-wrapper">
+                        <button type="submit" value="Gönder">Gönder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+</div>
+
+<div id="success" style="display: none">
+    <p class="title">Teşekkürler!</p>
     <br>
- 
-   <div class="bg"></div>
-   <div class="section">
-     <div class="section-img">
-       <div class="section-img-inner" style="background-image: url(2.jpg);"></div>
-     </div>
-     <div class="section-body">
-       <div class="section-text">
-         <form action="submit.php" method="POST">
-
-         <br>
-         
-         <h3>2. BÖLÜM <br> 1/10 İnfografiği hangi kişi veya kurumun yaptığı belli midir?</h3>
-         
-         <input id="who-yes" type="radio" name="who" value="yes">
-         <label for="sor-1"> Evet </label>
-         <br>
-         <input id="who-notsure" type="radio" name="who" value="notsure">
-         <label for="sor-1"> Emin değilim </label>
-         <br>
-         <input id="who-no" type="radio"name="who" value="no">
-         <label for="sor-1"> Hayır </label>
- 
- 
-         <br>
- 
-         <h3> 2/10 İnfografikteki verilerin hangi kaynaktan alındığı belli midir?</h3>
-         <input id="yes" type="radio" name="2" value="c">
-         <label for="sor-2"> Evet </label>
-         <br>
-         <input id="notcertain" type="radio" name="2" value="c">
-         <label for="sor-2"> Emin değilim </label>
-         <br>
-         <input id="no" type="radio" name="2" value="c">
-         <label for="sor-2"> Hayır </label>
- 
-         <br>
- 
-         <h3> 3/10 Gördüğünüz infografik türü aşağıdakilerden hangisidir?</h3>
-         <input id="geo-1" type="radio" name="geo" value="1">
-         <label for="sor-3"> Coğrafi infografik </label>
-         <br>
-         <input id="his-1" type="radio" name="geo" value="1">
-         <label for="sor-3"> Tarihi infografik</label>
-         <br>
-         <input id="opi-1" type="radio" name="geo" value="1">
-         <label for="sor-3"> Görüş infografiği </label>
-         <br>
-         <input id="data-1" type="radio" name="geo" value="1">
-         <label for="sor-3"> Veri infografiği </label>
-         <br>
-         <input id="bio-1" type="radio" name="geo" value="1">
-         <label for="sor-3"> Biyografi infografiği </label>
- 
-         <br>
- 
-         <h3> 4/10 İnfografikte hangi tasarım unsurları kullanılmıştır? (Çoklu seçim)</h3>
-         <input type="checkbox" name="elements" id="checkbox" value="color">
-         <label for="checkbox1"> Renk </label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="pictogram">
-         <label for="checkbox2"> Piktogram/Sembol/İşaret</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="stroke">
-         <label for="checkbox3">Çizgi</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="photo">
-         <label for="checkbox4">Fotoğraf</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="dataviz">
-         <label for="checkbox5">Veri görselleştirme teknikleri (Sütun grafik, balon grafik vb.)</label>
- 
-         <h3> 5/10 İnfografikte kullanılan tasarım unsurları yeterli midir?</h3>
-         <input id="d" type="radio" name="d" value="d">
-         <label for="d"> Evet </label>
-         <br>
-         <input id="d" type="radio" name="d" value="d">
-         <label for="d"> Emin değilim </label>
-         <br>
-         <input id="d" type="radio" name="d" value="d">
-         <label for="d"> Hayır </label>
- 
-           <br>
- 
-         <h3> 6/10 İnfografikte hangi veri görselleştirme teknikleri kullanılmıştır? (Çoklu seçim)</h3>
-         <input type="checkbox" name="elements" id="checkbox" value="bar">
-         <label for="checkbox6"> Sütun grafik </label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="baloon">
-         <label for="checkbox7"> Balon grafik</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="map">
-         <label for="checkbox8">Kabarcık haritası</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="donut">
-         <label for="checkbox9">Donut grafiği</label>
-         <br>
-         <input type="checkbox" name="elements" id="checkbox" value="bag">
-         <label for="checkbox10">Bağlantı haritası</label>
- 
-    <br>
- 
-           <h3> 7/10 Sizce infografikte kullanılan veri görselleştirme teknikleri yeterli midir?</h3>
-           <input id="e" type="radio" name="e" value="e">
-           <label for="e"> Evet </label>
-           <br>
-           <input id="e" type="radio" name="e" value="e">
-           <label for="e"> Emin değilim </label>
-           <br>
-           <input id="e" type="radio" name="e" value="e">
-           <label for="e"> Hayır </label>
- 
-           <br>
- 
-           <h3> 8/10 İnfografikte kullanılan metinler okunabilir midir?</h3>
-           <input id="f" type="radio" name="f" value="f">
-           <label for="f"> Evet </label>
-           <br>
-           <input id="f" type="radio" name="f" value="f">
-           <label for="f"> Emin değilim </label>
-           <br>
-           <input id="f" type="radio" name="f" value="f">
-           <label for="f"> Hayır </label>
- 
-           <br>
- 
-           <h3> 9/10 İnfografik içerisinde kullanılan bütün unsurlar size estetik bir uyum içinde gözüküyor mu?</h3>
-           <input id="g" type="radio" name="g" value="g">
-           <label for="g"> Evet </label>
-           <br>
-           <input id="g" type="radio" name="g" value="g">
-           <label for="g"> Emin değilim </label>
-           <br>
-           <input id="g" type="radio" name="g" value="g">
-           <label for="g"> Hayır </label>
-           
-           <br>
-           
-           <h3> 10/10 Verilmek istenen mesaj/bilgi açık bir şekilde verilmekte midir?</h3>
-           <input id="mesaj" type="radio" name="h" value="h">
-           <label for="sor-10"> Evet </label>
-           <br>
-           <input id="mesaj" type="radio" name="h" value="h">
-           <label for="sor-10"> Emin değilim </label>
-           <br>
-           <input id="mesaj" type="radio" name="h" value="h">
-           <label for="sor-10"> Hayır </label>
-           <br>
-           <button type="submit" value="Gönder">Gönder</button>
- 
-           <br>
- 
-          
- 
-         </form>
-         </div>
-       </div>
-     </div>
-    
-
-
-
-   
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <p class="description">Ankete katıldığınız için teşekkürler. Ankete dönmek için <a href="/">buraya</a> tıklayın.</p>
+</div>
 <script>
     $(window).scroll(function(){
-      let $window = $(window),
-          $body = $('body'),   
-          $section = $('.section');
-      let scroll = $window.scrollTop() + ($window.height() / 3);
-      $section.each(function(){ 
-        if($(this).position().top <= scroll && $(this).position().top + $(this).height() > scroll){
-          $body.removeClass(function (index, css){
-            return (css.match (/(^|\s)color-\s+/g) || [].join(' '));
-          });
-          $('.section').removeClass('active');
-          $(this).addClass('active');
-        }
-      });
+        let $window = $(window),
+            $body = $('body'),
+            $section = $('.section');
+        let scroll = $window.scrollTop() + ($window.height() / 3);
+        $section.each(function(){
+            if($(this).position().top <= scroll && $(this).position().top + $(this).height() > scroll){
+                $body.removeClass(function (index, css){
+                    return (css.match (/(^|\s)color-\s+/g) || [].join(' '));
+                });
+                $('.section').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
     }).scroll();
 </script>
 </body>
